@@ -1,9 +1,5 @@
 @echo off
-echo Iniciando aplicação:
+echo Iniciando aplicacao...
 py Telegram_bot.py
 echo.
-
-
-
-echo Aplicação finalizada.
 pause

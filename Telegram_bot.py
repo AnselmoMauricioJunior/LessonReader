@@ -5,9 +5,10 @@ from dotenv import load_dotenv
 
 
 load_dotenv()
+print("Obtendo token...")
 bot_token = os.getenv("TOKEN_TELEGRAM")
 bot = telebot.TeleBot(bot_token)
-
+print("Aplicação iniciada")
 
 def baixar_licao():
     subprocess.run(['py', 'LessonReader.py']) 
