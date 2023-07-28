@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 
 
 load_dotenv()
-print('Iniciado...')
 bot_token = os.getenv("TOKEN_TELEGRAM")
 bot = telebot.TeleBot(bot_token)
 
