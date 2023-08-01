@@ -2,6 +2,7 @@ import telebot
 import os
 import subprocess
 from dotenv import load_dotenv
+from IAChat import call_bard
 
 
 load_dotenv()
@@ -37,5 +38,11 @@ def send_licao(message):
 
     with open(caminho_pasta+"/"+file_path, 'rb') as pdf_file:
         bot.send_document(message.chat.id, pdf_file)
+
+@bot.message_handler(commands=['bot'])
+def send_welcome(message):    
+    pergunta = message.text.replace('/bot ','')    
+    resposta = call_bard(pergunta)
+    bot.reply_to(message, resposta)
 
 bot.infinity_polling()
