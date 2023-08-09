@@ -14,6 +14,9 @@ print("Aplicação iniciada")
 def baixar_licao():
     subprocess.run(['py', 'LessonReader.py']) 
 
+def baixar_meditacao():
+    subprocess.run(['py', 'MeditationReader.py']) 
+
 def nome_arquivo_mais_recente(caminho_pasta):
     arquivos = [os.path.join(caminho_pasta, arquivo) for arquivo in os.listdir(caminho_pasta)]
     if not arquivos:
@@ -39,8 +42,21 @@ def send_licao(message):
     with open(caminho_pasta+"/"+file_path, 'rb') as pdf_file:
         bot.send_document(message.chat.id, pdf_file)
 
+@bot.message_handler(commands=['meditacao'])
+def send_meditacao(message):
+    bot.reply_to(message, "Baixando meditacao...")
+    bot.send_message(message.chat.id,"Aguarde")
+    baixar_meditacao()
+
+    caminho_pasta = "meditacoes"
+    file_path = nome_arquivo_mais_recente(caminho_pasta)
+
+    with open(caminho_pasta+"/"+file_path, 'rb') as pdf_file:
+        bot.send_document(message.chat.id, pdf_file)
+
 @bot.message_handler(commands=['bot'])
-def send_welcome(message):    
+def send_welcome(message):   
+    bot.send_message(message.chat.id,"Consultando...") 
     pergunta = message.text.replace('/bot ','')    
     resposta = call_bard(pergunta)
     bot.reply_to(message, resposta)
