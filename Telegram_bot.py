@@ -44,7 +44,7 @@ def send_licao(message):
 
 @bot.message_handler(commands=['meditacao'])
 def send_meditacao(message):
-    bot.reply_to(message, "Baixando meditacao...")
+    bot.reply_to(message, "Baixando meditação...")
     bot.send_message(message.chat.id,"Aguarde")
     baixar_meditacao()
 
