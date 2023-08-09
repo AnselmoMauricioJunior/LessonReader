@@ -56,7 +56,7 @@ def send_meditacao(message):
 
 @bot.message_handler(commands=['bot'])
 def send_welcome(message):   
-    bot.send_message(message.chat.id,"Consultando...") 
+    bot.send_message(message.chat.id,"Digitando...") 
     pergunta = message.text.replace('/bot ','')    
     resposta = call_bard(pergunta)
     bot.reply_to(message, resposta)
